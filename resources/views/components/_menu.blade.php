@@ -53,6 +53,7 @@ $dbusers = getdbusers();
     <div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
         id="kt_app_header_menu" data-kt-menu="true">
         <!--begin:Menu item-->
+
         <div data-kt-menu-placement="bottom-start"
             class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
             <!--begin:Menu link-->
@@ -62,6 +63,7 @@ $dbusers = getdbusers();
             </a>
             <!--end:Menu link-->
         </div>
+
         <!--end:Menu item-->
         <!--begin:Menu item-->
         <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
@@ -368,7 +370,7 @@ $dbusers = getdbusers();
 
                             <!--begin::Row-->
                             <div class="row g-2">
-
+                                @if(auth()->user()->hasRole('superadministrator'))
                                 <div class="col-4">
                                     <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                         data-kt-menu-placement="bottom-start"
@@ -439,11 +441,12 @@ $dbusers = getdbusers();
                                         </div>
                                         <!--end:Menu sub-->
                                     </div>
-                                </div>
 
+                                </div>
+                                @endif
                                 <!--begin::Col-->
 
-                                @can('read property management')
+                                @canany('read property management')
                                 <div class="col-4">
                                     <a href="{{ route('property.list') }}"
                                         class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
@@ -452,12 +455,12 @@ $dbusers = getdbusers();
                                         <span class="fw-semibold">PMS</span>
                                     </a>
                                 </div>
-                                @endcan
+                                @endcanany
 
                                 <!--end::Col-->
                                 <!--begin::Col-->
 
-                                @can('read designer management')
+                                @canany('read designer management')
                                 <div class="col-4">
                                     <a href="{{ route('style.dashboard') }}"
                                         class="d-flex flex-column flex-center text-center text-gray-800 text-hover-primary bg-hover-light rounded py-4 px-3 mb-3">
@@ -467,7 +470,7 @@ $dbusers = getdbusers();
                                         <span class="fw-semibold">Designer</span>
                                     </a>
                                 </div>
-                                @endcan
+                                @endcanany
                                 <!--end::Col-->
 
                                 <!--begin::Col-->
@@ -777,12 +780,9 @@ $dbusers = getdbusers();
                         <span class="menu-title">Account Settings</span>
                         <span class="menu-arrow"></span>
                     </a>
-
-
-
                     <!--begin::Menu sub-->
                     <div class="menu-sub menu-sub-dropdown w-250 py-4">
-
+                        @canany('read settings management')
                         <div class="menu-item px-3">
                             <a class="menu-link px-5" href="{{ route('setting') }}">
                                 <span class="menu-icon">
@@ -792,39 +792,31 @@ $dbusers = getdbusers();
                                 <span class="menu-title">Settings</span>
                             </a>
                         </div>
-
-                        <div data-kt-menu-trigger="click" class="menu-item here menu-accordion">
-                            <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                        class="ki-duotone ki-abstract-28 fs-2"><span class="path1"></span><span
-                                            class="path2"></span></i></span><span class="menu-title">User
-                                    Management</span><span class="menu-arrow"></span></span>
+                        @endcanany
+                        @canany('read user management')
+                        <div class="menu-item">
+                            <!--begin:Menu link--><a class="menu-link"
+                                href="{{ route('user-management.users.index') }}"><span class="menu-icon">
+                                    <img width="25" height="25" src="{{ asset('uploads/users.png') }}"
+                                        alt="Users--v1" />
+                                </span><span
+                                    class="menu-title">Users Managment</span></a>
                             <!--end:Menu link-->
-                            <!--begin:Menu sub-->
-                            <div class="menu-sub menu-sub-accordion" kt-hidden-height="128"
-                                style="display: none; overflow: hidden;">
-
-                                <div class="menu-item">
-                                    <!--begin:Menu link--><a class="menu-link"
-                                        href="{{ route('user-management.users.index') }}"><span
-                                            class="menu-bullet"><span
-                                                class="bullet bullet-dot"></span></span><span
-                                            class="menu-title">Users List</span></a>
-                                    <!--end:Menu link-->
-                                </div>
-                                @can('read role management')
-                                <!--begin:Menu item-->
-                                <div class="menu-item">
-                                    <!--begin:Menu link--><a class="menu-link"
-                                        href="{{ route('user-management.roles.index') }}"><span
-                                            class="menu-bullet"><span class="bullet bullet-dot"></span></span><span
-                                            class="menu-title">Roles List</span></a>
-                                    <!--end:Menu link-->
-                                </div>
-                                <!--end:Menu item-->
-                                @endcan
-                            </div>
                         </div>
-
+                        @endcanany
+                        @canany('read role management')
+                        <!--begin:Menu item-->
+                        {{-- <div class="menu-item">
+                            <!--begin:Menu link--><a class="menu-link"
+                                href="{{ route('user-management.roles.index') }}"><span class="menu-icon">
+                                    <img width="25" height="25" src="{{ asset('uploads/roles.png') }}"
+                                        alt="roles--v1" />
+                                </span><span
+                                    class="menu-title">Roles List</span></a>
+                            <!--end:Menu link-->
+                        </div> --}}
+                        <!--end:Menu item-->
+                        @endcanany
                         <!--begin::Menu item-->
                         {{-- <div class="menu-item px-3">
                             <a class="menu-link px-5" href="{{ route('role.list') }}">

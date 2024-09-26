@@ -26,14 +26,11 @@ class AuthServiceProvider extends ServiceProvider
         //
         \Gate::before(function ($user, $ability) {
             // Get all roles from the roles table
-            $roles = \Spatie\Permission\Models\Role::all()->pluck('name')->toArray();
-
-            // Check if the user has any of the roles
-            foreach ($roles as $role) {
+            $role = \Spatie\Permission\Models\Role::where('name','superadministrator')->first();
                 if ($user->hasRole($role)) {
                     return true; // Grant access if the user has a role
                 }
-            }
+
         });
     }
 }

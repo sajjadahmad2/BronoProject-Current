@@ -140,7 +140,7 @@
   'breadcrumbs' => 
   array (
     'view' => 'breadcrumbs::bootstrap5',
-    'files' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\routes/breadcrumbs.php',
+    'files' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\routes/breadcrumbs.php',
     'unnamed-route-exception' => true,
     'missing-route-bound-breadcrumb-exception' => true,
     'invalid-named-breadcrumb-exception' => true,
@@ -227,7 +227,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\storage\\framework/cache/data',
+        'path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -424,13 +424,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\storage\\app',
+        'root' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\storage\\app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\storage\\app/public',
+        'root' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\storage\\app/public',
         'url' => 'http://localhost:8000/storage',
         'visibility' => 'public',
         'throw' => false,
@@ -450,7 +450,7 @@
     ),
     'links' => 
     array (
-      'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\public\\storage' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\storage\\app/public',
+      'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\public\\storage' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -471,7 +471,7 @@
   'livewire' => 
   array (
     'class_namespace' => 'App\\Livewire',
-    'view_path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\resources\\views/livewire',
+    'view_path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\resources\\views/livewire',
     'layout' => 'layouts.app',
     'lazy_placeholder' => NULL,
     'temporary_file_upload' => 
@@ -539,13 +539,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -597,7 +597,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -676,7 +676,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\resources\\views/vendor/mail',
+        0 => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -852,7 +852,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\storage\\framework/sessions',
+    'files' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -1141,9 +1141,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\resources\\views',
+      0 => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\resources\\views',
     ),
-    'compiled' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project\\storage\\framework\\views',
+    'compiled' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -1229,7 +1229,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\Brono-project',
+    'remote_sites_path' => 'C:\\Users\\PC\\Desktop\\Metronic\\XML-Project-main\\XML_ToolKit\\BronoProjectCurrent\\BronoProject-Current',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',

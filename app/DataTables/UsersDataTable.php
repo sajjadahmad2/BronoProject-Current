@@ -57,7 +57,7 @@ class UsersDataTable extends DataTable
     public function query(User $model): QueryBuilder
     {
 
-        return $model->newQuery()->with('permissions')->where('added_by', auth()->user()->id);
+        return $model->newQuery()->with('permissions','roles')->where('added_by', auth()->user()->id);
     }
 
     /**

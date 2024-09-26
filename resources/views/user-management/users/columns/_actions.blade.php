@@ -1,3 +1,4 @@
+@canany('write user management,delete user management')
 <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
     Actions
     <i class="ki-duotone ki-down fs-5 ms-1"></i>
@@ -13,19 +14,24 @@
     <!--end::Menu item-->
 
     <!--begin::Menu item-->
+    @canany('write user management')
     <div class="menu-item px-3">
         <a href="#" class="menu-link px-3 update-user" data-user-object="{{ json_encode($user) }}"data-permission-object="{{ json_encode($permissions) }}"data-permissiongroup-object="{{ json_encode($permissions_by_group) }}" data-kt-user-id="{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#kt_modal_edit_user" data-kt-action="update_row">
             Edit
         </a>
     </div>
+  @endcanany
     <!--end::Menu item-->
 
     <!--begin::Menu item-->
+    @canany('delete user management')
     <div class="menu-item px-3">
         <a href="#" class="menu-link px-3" data-kt-user-id="{{ $user->id }}" data-kt-action="delete_row">
             Delete
         </a>
     </div>
+    @endcanany
     <!--end::Menu item-->
 </div>
+@endcanany
 <!--end::Menu-->

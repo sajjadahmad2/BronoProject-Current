@@ -42,11 +42,11 @@
 
 
 <div class="row">
-    @can('add role')
+    @canany('add role')
     <div class="col-md-12 text-right">
         <a href="{{ route('role.add') }}" class="btn btn-gradient-primary px-4 mt-0 mb-3"><i class="mdi mdi-plus-circle-outline mr-2"></i>Add New</a>
     </div>
-    @endcan
+    @endcanany
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">

@@ -12,7 +12,7 @@ use App\Http\Controllers\PropertyPermissionController;
 use App\Http\Controllers\DashboardStyleController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SettingController;
-
+use App\Models\User;
 
 use Illuminate\Support\Facades\Route;
 
@@ -134,12 +134,16 @@ Route::get('/update-contact-tags', function () {
 
 });
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 Route::get('/error', function () {
     $adminROle = Role::where('name','company')->first();
-    $user = auth()->user();
-    // $user->syncRoles([]);
-    $user->assignROle($adminROle);
-    return $user->roles;
+    $users = User::where('id',1)->get();
+    foreach($users as $user){
+        $user->removeRole($adminROle);
+        $allPermissions = Permission::all();
+        $user->syncPermissions($allPermissions);
+    }
+    return 'All Done';
 });
 
 Route::get('/auth/redirect/{provider}', [SocialiteController::class, 'redirect']);

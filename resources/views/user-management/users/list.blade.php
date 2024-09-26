@@ -28,7 +28,7 @@
 
         <!--begin::Card toolbar-->
         <div class="card-toolbar">
-            @can('create user management')
+            @canany('create user management')
                 <!--begin::Toolbar-->
                 <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                     <!--begin::Add user-->
@@ -39,7 +39,7 @@
                     </button>
                     <!--end::Add user-->
                 </div>
-            @endcan
+            @endcanany
             <!--end::Toolbar-->
 
             <!--begin::Modal-->

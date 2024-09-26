@@ -705,8 +705,10 @@
         </div>
 
         <div class="copy-btn text-right mt-5">
+            @canany('write designer management', 'create designer management')
             <button type="button" class="btn btn-success" onclick="copyCSS()">Copy CSS</button>
             <input type="submit" value="Save CSS" class="btn btn-primary save-css-btn" form="customizerForm">
+            @endcanany
         </div>
 
     </div>

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\Contact;
+use App\Models\GhlUser;
 use App\Models\Opportunity;
 use App\Models\Call;
 use App\Models\Appointment;
@@ -22,7 +23,51 @@ if (!function_exists('theme')) {
         return app(App\Core\Theme::class);
     }
 }
-
+function ghl_users($locid = null, $refresh = false)
+   {
+       if (is_null($locid)) {
+           $location_id = auth()->user()->location_id;
+       } else {
+           $location_id = $locid;
+       }
+       $user = User::where('location_id', $location_id)->first();
+       $cacheKey = 'ghl_users_' . $location_id;
+       $gusers = [];
+       if ($refresh || !Cache::has($cacheKey)) {
+           $users = ghl_api_call('users/', $user->id);
+           $users = json_decode($users, true);
+           if ($users && isset($users['users'])) {
+               Cache::put($cacheKey, $users['users'], now()->addDays(2));
+               $gusers = $users['users'];
+               save_ghl_users($gusers,$user);
+           }
+           return [];
+       }
+       // Get cached users and sort them alphabetically
+       $cachedUsers = Cache::get($cacheKey);
+       save_ghl_users($cachedUsers,$user);
+       return $cachedUsers;
+   }
+   function save_ghl_users($users=[],$auth=null){
+    $authuser=  is_null($auth) ? auth()->user() : $auth;
+    foreach($users as $user){
+        $data = [
+            'location_id' => $authuser->location_id,
+            'user_id' => $authuser->id,
+            'ghl_user_id' => $user['id']?? '',
+            'first_name' => $user['firstName']?? '',
+            'last_name' => $user['lastName'] ?? '',
+            'email' => $user['email']??'',
+            'phone' => $user['phone']??'',
+        ];
+        //update or create based on the user_id and email
+        $user = GhlUser::updateOrCreate(
+            ['user_id' => $authuser->id,'email' => $data['email']],
+            $data
+        );
+    }
+    return true;
+}
 
 if (!function_exists('getName')) {
     /**

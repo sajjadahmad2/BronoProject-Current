@@ -29,6 +29,14 @@ class AppServiceProvider extends ServiceProvider
         Builder::defaultStringLength(191);
 
         KTBootstrap::init();
+        \Blade::directive('canany', function ($permissions) {
+            return "<?php if(auth()->check() && auth()->user()->permissions->pluck('name')->intersect(explode(',', $permissions))->isNotEmpty()): ?>";
+        });
+
+        \Blade::directive('endcanany', function () {
+            return "<?php endif; ?>";
+        });
+
     }
 
 }

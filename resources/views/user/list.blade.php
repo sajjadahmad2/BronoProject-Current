@@ -17,7 +17,7 @@
             </div><!--end page-title-box-->
         </div><!--end col-->
     </div>
-    
+
     <!-- end page title end breadcrumb -->
     <div class="row">
         <div class=" m-2 col-lg-3">
@@ -43,11 +43,11 @@
 
 
     <div class="row">
-        @can('create user management')
+        @canany('create user management')
         <div class="col-md-12 text-right">
             <a href="{{ route('user.add') }}" class="btn btn-gradient-primary px-4 mt-0 mb-3"><i class="mdi mdi-plus-circle-outline mr-2"></i>Add New</a>
         </div>
-        @endcan
+        @endcanany
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
