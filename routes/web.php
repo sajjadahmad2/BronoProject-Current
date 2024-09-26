@@ -42,6 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/profile', 'profile')->name('profile');
         Route::post('/profile-save', 'general')->name('profile.save');
         Route::post('/password-save', 'password')->name('password.save');
+        Route::post('/email-save', 'emailUpdate')->name('email.save');
         // Route::get('/', 'dashboard')->name('dashboard');
          Route::get('/test-dashboard', 'dashboardTestSabir');
         Route::get('/settings', 'setting')->name('setting')->middleware('permission:manage settings');

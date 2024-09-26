@@ -23,6 +23,9 @@ if (!function_exists('theme')) {
         return app(App\Core\Theme::class);
     }
 }
+function full_name($user){
+    return ucwords($user->first_name  . ' ' . $user->last_name ?? '');
+}
 function ghl_users($locid = null, $refresh = false)
    {
        if (is_null($locid)) {

@@ -122,11 +122,17 @@ class DashboardController extends Controller
         } else {
             $location_id = $locid;
         }
-        // $contacts = Contact::where('location_id', $location_id)->get();
-        $sql = "SELECT * FROM contacts WHERE location_id = :location_id";
-        $params = ['location_id' => $location_id];
-        // dd($q);
-        $contacts = runQuery($sql, $params);
+
+        $contacts = Contact::where('location_id', $location_id)->get();
+        $contacts1 = Contact::where('location_id', 'LIKE', "%{$location_id}%")->get();
+        $contacts2 = Contact::where('location_id', 'LIKE', "{$location_id}%")->get();
+        $contacts3 = Contact::where('location_id', 'LIKE', "%{$location_id}")->get();
+
+        // $sql = "SELECT * FROM contacts WHERE location_id = :location_id";
+        // $params = ['location_id' => $location_id];
+
+        // $contacts = runQuery($sql, $params);
+        dd(count($contacts),count($contacts1),count($contacts2),count($contacts3));
         return $contacts;
     }
 
@@ -1018,8 +1024,6 @@ class DashboardController extends Controller
     {
         set_time_limit(3000000);
         $default = '0fu8c2Te17KqLDYyr8RE';
-
-
         $request->merge(['location_id' => $default]);
         // $locations = User::whereHas('roles', function ($query) {
         //     $query->where('name', 'company');
@@ -1032,6 +1036,7 @@ class DashboardController extends Controller
         $oppointment_stats = null;
         $call_stats = null;
         $all_contacts = $this->contacts($default);
+        dd(count($all_contacts));
         $opportunities = $this->opportunities($request);
         $whereClause = [];
         $founds = 0;
@@ -1678,33 +1683,30 @@ class DashboardController extends Controller
         return redirect()->back()->with('success', $msg);
     }
 
-    public function profile()
-    {
-        $user = Auth::user();
-        return view('profile.userprofile', get_defined_vars());
-    }
     public function general(Request $req)
     {
         $user = Auth::user();
         $req->validate([
             'email' => 'required|email',
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'first_name' => 'required | string | max:50',
+            'last_name' => 'required  | string | max:50',
+            'location_id' => 'required | string',
         ]);
-
         $user->first_name = $req->first_name;
         $user->last_name = $req->last_name;
         $user->email = $req->email;
+        $user->location_id = $req->location_id;
+        if($req->phone){
+            $user->phone = $req->phone;
+        }
         if ($req->photo) {
             $user->photo = uploadFile($req->photo, 'uploads/profile', $req->first_name . '-' . $req->last_name . '-' . time());
         }
         $user->save();
         return redirect()->back()->with('success', 'Profile updated successfully');
     }
-
     public function password(Request $req)
     {
-
         $user = Auth::user();
         $req->validate([
             'current_password' => 'required|password',
@@ -1713,9 +1715,33 @@ class DashboardController extends Controller
         ]);
         $user->password = bcrypt($req->password);
         $user->save();
-
         return redirect()->back()->with('success', 'Password updated Successfully!');
     }
+    public function updateEmail(Request $req)
+    {
+        $req->validate([
+            'email' => 'required|email',
+            'confirmemailpassword' => 'required',
+        ]);
+        if(!Hash::check($req->confirmemailpassword, Auth::user()->password)){
+            return redirect()->back()->with('error', 'Password does not match');
+        }
+        $user = Auth::user();
+        $user->email = $req->email;
+        $user->save();
+        return redirect()->back()->with('success', 'Email updated Successfully!');
+    }
+    public function profile()
+    {
+        $user = Auth::user();
+
+        $calls_count = Call::where('location_id', $user->location_id)->count();
+        $appointments_count = Appointment::where('location_id', $user->location_id)->count();
+        $oppurtunities_count = Opportunity::where('location_id', $user->location_id)->count();
+        $leads_count = Contact::where('location_id', $user->location_id)->count();
+        return view('profile.userprofile', get_defined_vars());
+    }
+
     public function importAppointments(Request $request)
     {
 
